@@ -1,0 +1,44 @@
+art-site/
+ ├ index.html   ← メインのページ
+ ├ style.css    ← 見た目（デザイン・アニメーション）
+ └ images/
+    ├ art1.png  ← あなたの絵（PNG）
+    ├ art2.png
+
+
+変更コード（メモ）↓
+
+画像が増えたとき
+<figure class="art-item">
+  <img src="images/2024/xxx.png">
+  <figcaption>
+    <span class="title">作品名</span><br>
+    <span class="year">2024</span>
+  </figcaption>
+</figure>
+　CSSは触らない
+
+CSS↓
+
+画像サイズ・比率を変えたいとき
+.gallery img {
+  max-width: 260px;   /* サイズ */
+  aspect-ratio: 3 / 4; /* 比率 */
+}
+背景色を変えたいとき
+body {
+  background: linear-gradient(...);
+}
+
+作品カードの色・透明感
+.art-item {
+  background: rgba(255,255,255,0.03);
+}
+
+横の間隔を変えたい
+.gallery {
+  gap: 50px;
+}
+
+スマホ表示を変えたい
+@media (max-width: 768px) { ... }

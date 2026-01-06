@@ -1,0 +1,164 @@
+/* ページ全体 */
+body {
+  margin: 0;
+
+  /* 黒背景でも見える文字色 */
+  color: #000000;
+
+  font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", sans-serif;
+
+  /* 深みのある黒背景 */
+  background:
+    radial-gradient(circle at top, rgba(120,140,255,0.15), transparent 60%),
+    linear-gradient(180deg, #03238a, #f8dcff);
+
+  min-height: 100vh;
+min-height: 100vh;
+}
+
+
+/* タイトル */
+h1 {
+  margin: 80px auto 20px;
+  text-align: center;
+
+  font-size: 40px;
+  letter-spacing: 0.08em;
+}
+
+
+h2 {
+  margin: 120px 0 20px;
+  text-align: center;
+  font-weight: 300;
+  opacity: 0.8;
+ font-size: 40px;
+  letter-spacing: 0.08em;
+}
+
+
+/* ===== ギャラリー ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 50px;        /* ← 間隔を広く */
+  padding: 60px 80px;
+
+  /* 中央寄せ */
+  justify-items: center;
+}
+
+/* 画像1枚ずつ */
+.gallery img {
+  width: 100%;
+  max-width: 260px;
+
+  /* 画像比率を統一（縦長イラスト向け） */
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+/* ホバー */
+.gallery img:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* フェードイン */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== モーダル（拡大表示） ===== */
+.modal {
+  display: none;              /* 最初は非表示 */
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.85);
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+/* 拡大画像 */
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.art-item {
+  padding: 20px 20px 28px;
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* スクロール表示用 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== メッセージ表示 ===== */
+#message-box {
+  display: none;
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+
+  background: rgba(226, 154, 154, 0.05);
+  border-radius: 20px;
+
+  color: #eaeaf0;
+  text-align: center;
+  line-height: 1.8;
+}
+
+#messageLink {
+  cursor: pointer;
+  color: #5f5353;
+  text-decoration: none;
+
+  font-size: 22px;      /* ← 大きさ（20〜28pxあたりがおすすめ） */
+  letter-spacing: 0.08em;
+}
